@@ -1,0 +1,8 @@
+.menu li > *:not(ul, .menu-title, details, .btn):active, 
+.menu li > *:not(ul, .menu-title, details, .btn).active, 
+.menu li > details > summary:active {
+    --tw-bg-opacity: 0.5; /* Adjust the opacity as needed */
+    background-color: rgba(209, 160, 84, var(--tw-bg-opacity)); /* #D1A054 with variable transparency */
+    --tw-text-opacity: 1;
+    color: var(--fallback-nc, oklch(var(--nc) / var(--tw-text-opacity)));
+}

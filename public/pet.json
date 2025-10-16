@@ -1,0 +1,125 @@
+
+[
+    {
+      "pet_image": "https://images.pexels.com/photos/825947/pexels-photo-825947.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "pet_name": "Buddy",
+      "pet_age": 3,
+      "pet_category": "Dog",
+      "pet_location": "1234 Elm Street, Springfield, IL",
+      "short_description": "Friendly and playful.",
+      "long_description": "Buddy is a very friendly and playful dog who loves to run around and play fetch. He is great with kids and other pets. He has been vaccinated and is in good health. Looking for a loving family to adopt him.",
+      "adopted": false,
+      "dateAdded": "6/5/2024"
+    },
+    {
+      "pet_image": "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "pet_name": "Whiskers",
+      "pet_age": 2,
+      "pet_category": "Cat",
+      "pet_location": "5678 Oak Street, Metropolis, IL",
+      "short_description": "Quiet and affectionate.",
+      "long_description": "Whiskers is a quiet and affectionate cat who enjoys lounging in the sun. She is very gentle and loves to be petted. She is spayed and up to date on her vaccinations.",
+      "adopted": false,
+      "dateAdded": "6/5/2024"
+    },
+    {
+      "pet_image": "https://images.pexels.com/photos/56733/pexels-photo-56733.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "pet_name": "Chirpy",
+      "pet_age": 1,
+      "pet_category": "Bird",
+      "pet_location": "9101 Maple Avenue, Gotham, NY",
+      "short_description": "Loves to sing.",
+      "long_description": "Chirpy is a young bird who loves to sing and chirp. He is very social and enjoys the company of people. He is healthy and comes with a cage and toys.",
+      "adopted": false,
+      "dateAdded": "6/5/2024"
+    },
+    {
+      "pet_image": "https://images.pexels.com/photos/4588055/pexels-photo-4588055.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "pet_name": "Hopper",
+      "pet_age": 4,
+      "pet_category": "Rabbit",
+      "pet_location": "2233 Pine Street, Star City, WA",
+      "short_description": "Energetic and curious.",
+      "long_description": "Hopper is an energetic and curious rabbit who loves to explore. He enjoys munching on fresh vegetables and is great with children. He is neutered and in good health.",
+      "adopted": false,
+      "dateAdded": "6/5/2024"
+    },
+    {
+      "pet_image": "https://images.pexels.com/photos/7974251/pexels-photo-7974251.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "pet_name": "Goldie",
+      "pet_age": 1,
+      "pet_category": "Fish",
+      "pet_location": "3217 Birch Street, Central City, CA",
+      "short_description": "Colorful and lively.",
+      "long_description": "Goldie is a colorful and lively fish who brightens up any aquarium. She is easy to care for and is a great pet for beginners. Comes with a tank and starter kit.",
+      "adopted": false,
+      "dateAdded": "6/5/2024"
+    },
+    {
+      "pet_image": "https://images.pexels.com/photos/220938/pexels-photo-220938.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "pet_name": "Bella",
+      "pet_age": 5,
+      "pet_category": "Dog",
+      "pet_location": "4567 Cedar Street, Keystone City, PA",
+      "short_description": "Loyal and protective.",
+      "long_description": "Bella is a loyal and protective dog who is great with families. She loves to play and is very obedient. She is spayed, vaccinated, and in excellent health.",
+      "adopted": false,
+      "dateAdded": "6/5/2024"
+    },
+    {
+      "pet_image": "https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "pet_name": "Shadow",
+      "pet_age": 3,
+      "pet_category": "Cat",
+      "pet_location": "7890 Aspen Street, Coast City, OR",
+      "short_description": "Mysterious and independent.",
+      "long_description": "Shadow is a mysterious and independent cat who enjoys quiet time. He is very low maintenance and is litter trained. He is neutered and up to date on his shots.",
+      "adopted": false,
+      "dateAdded": "6/5/2024"
+    },
+    {
+      "pet_image": "https://images.pexels.com/photos/20358978/pexels-photo-20358978/free-photo-of-close-up-of-a-white-cockatiel-sitting-on-a-branch.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "pet_name": "Peppy",
+      "pet_age": 2,
+      "pet_category": "Bird",
+      "pet_location": "1011 Elm Street, Blüdhaven, NJ",
+      "short_description": "Active and talkative.",
+      "long_description": "Peppy is an active and talkative bird who loves to mimic sounds. He is very entertaining and enjoys interacting with people. He is healthy and comes with a spacious cage.",
+      "adopted": false,
+      "dateAdded": "6/5/2024"
+    },
+    {
+      "pet_image": "https://images.pexels.com/photos/3820509/pexels-photo-3820509.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "pet_name": "Flopsy",
+      "pet_age": 1,
+      "pet_category": "Rabbit",
+      "pet_location": "1122 Fir Street, Smallville, KS",
+      "short_description": "Gentle and fluffy.",
+      "long_description": "Flopsy is a gentle and fluffy rabbit who loves to cuddle. She is very friendly and is great with kids. She is spayed and has a clean bill of health.",
+      "adopted": false,
+      "dateAdded": "6/5/2024"
+    },
+    {
+      "pet_image": "https://images.pexels.com/photos/3687770/pexels-photo-3687770.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "pet_name": "Spike",
+      "pet_age": 4,
+      "pet_category": "Dog",
+      "pet_location": "1314 Spruce Street, Fawcett City, MD",
+      "short_description": "Strong and brave.",
+      "long_description": "Spike is a strong and brave dog who is very protective of his family. He loves to play and is very obedient. He is neutered, vaccinated, and in excellent health.",
+      "adopted": false,
+      "dateAdded": "6/5/2024"
+    },
+    {
+      "pet_image": "https://images.pexels.com/photos/208984/pexels-photo-208984.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "pet_name": "Mittens",
+      "pet_age": 3,
+      "pet_category": "Cat",
+      "pet_location": "1516 Maple Street, Metropolis, IL",
+      "short_description": "Playful and curious.",
+      "long_description": "Mittens is a playful and curious cat who loves to explore. She enjoys playing with toys and is very affectionate. She is spayed and up to date on her vaccinations.",
+      "adopted": false,
+      "dateAdded": "6/5/2024"
+    }
+  ]
+  
