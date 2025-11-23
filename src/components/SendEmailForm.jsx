@@ -9,6 +9,8 @@ const SendEmailForm = () => {
 
   const [status, setStatus] = useState('');
 
+  const BASE_URL = "http://localhost:5000";
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -22,7 +24,7 @@ const SendEmailForm = () => {
     setStatus('Sending...');
 
     try {
-      const response = await fetch('http://localhost:5000/send-test-email', {
+      const response = await fetch(`${BASE_URL}/send-test-email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

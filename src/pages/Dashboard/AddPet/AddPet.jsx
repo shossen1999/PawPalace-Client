@@ -18,25 +18,78 @@ const purposes = [
   { value: 'sell', label: 'For Sale' }
 ];
 
+// Vaccination options by category
+const vaccinationOptions = {
+  Dog: [
+    { value: "Rabies", label: "Rabies" },
+    { value: "Canine Distemper Virus", label: "Canine Distemper Virus" },
+    { value: "Canine Adenovirus (Hepatitis)", label: "Canine Adenovirus (Hepatitis)" },
+    { value: "Canine Parvovirus", label: "Canine Parvovirus" },
+    { value: "Canine Parainfluenza Virus", label: "Canine Parainfluenza Virus" },
+    { value: "Bordetella (Kennel Cough)", label: "Bordetella (Kennel Cough)" },
+    { value: "Leptospirosis", label: "Leptospirosis" },
+    { value: "Canine Influenza", label: "Canine Influenza" },
+    { value: "Lyme Disease", label: "Lyme Disease" }
+  ],
+  Cat: [
+    { value: "Rabies", label: "Rabies" },
+    { value: "Feline Viral Rhinotracheitis (FHV-1)", label: "Feline Viral Rhinotracheitis (FHV-1)" },
+    { value: "Feline Calicivirus (FCV)", label: "Feline Calicivirus (FCV)" },
+    { value: "Feline Panleukopenia (FPV)", label: "Feline Panleukopenia (FPV)" },
+    { value: "Feline Leukemia Virus (FeLV)", label: "Feline Leukemia Virus (FeLV)" },
+    { value: "Feline Immunodeficiency Virus (FIV)", label: "Feline Immunodeficiency Virus (FIV)" },
+    { value: "Chlamydophila felis", label: "Chlamydophila felis" }
+  ],
+  Rabbit: [
+    { value: "Myxomatosis", label: "Myxomatosis" },
+    { value: "Rabbit Haemorrhagic Disease (RHDV1 & RHDV2)", label: "Rabbit Haemorrhagic Disease (RHDV1 & RHDV2)" }
+  ],
+  Bird: [
+    { value: "Avian Polyomavirus (rare cases)", label: "Avian Polyomavirus (rare cases)" },
+    { value: "Pigeon Pox (specific species)", label: "Pigeon Pox (specific species)" }
+  ],
+  Fish: [] // no vaccinations
+};
+
 const AddPet = () => {
   const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
   const { register, handleSubmit, control, watch, formState: { errors } } = useForm({
-  defaultValues: {
-    vaccinations: [{ vaccineType: "", date: "" }]
-  }
-});
+    defaultValues: {
+      vaccinations: [{ vaccineType: null, date: "" }]
+    }
+  });
 
-const selectedPurpose = watch("purpose"); // 👈 Watch the purpose field
+  const selectedCategory = watch("category");
+  const selectedPurpose = watch("purpose");
 
-
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, replace } = useFieldArray({
     control,
     name: "vaccinations"
   });
 
   const imageHostingKey = import.meta.env.VITE_IMAGE_HOSTING_KEY;
   const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`;
+
+  // --- NEW: filter out already selected vaccines so duplicates cannot be chosen ---
+  const getFilteredVaccines = (index) => {
+    // Get current selected vaccine values (strings) for all rows
+    const allVaccinations = watch("vaccinations") || [];
+    const selectedVaccines = allVaccinations
+      .map(v => v?.vaccineType?.value)
+      .filter(Boolean);
+
+    const optionsForCategory = vaccinationOptions[selectedCategory] || [];
+
+    // Allow the currently selected value in this row (so it doesn't disappear while editing)
+    const currentValue = watch(`vaccinations.${index}.vaccineType`)?.value;
+
+    return optionsForCategory.filter(vaccine =>
+      // keep vaccine if it's not selected elsewhere OR it's the current value for this row
+      !selectedVaccines.includes(vaccine.value) || vaccine.value === currentValue
+    );
+  };
+  // -------------------------------------------------------------------------------
 
   const onSubmit = async (data) => {
     if (!user) return Swal.fire("Error", "You must be logged in to add a pet.", "error");
@@ -53,9 +106,9 @@ const selectedPurpose = watch("purpose"); // 👈 Watch the purpose field
       const imageUrl = uploadRes.data.data.display_url;
 
       // Filter out empty vaccinations
-      const vaccinationsArray = data.vaccinations
-        .filter(v => v.vaccineType.trim() && v.date)
-        .map(v => ({ vaccineType: v.vaccineType.trim(), date: v.date }));
+      const vaccinationsArray = (data.vaccinations || [])
+        .filter(v => v.vaccineType && v.date)
+        .map(v => ({ vaccineType: v.vaccineType.value, date: v.date }));
 
       // Prepare pet data
       const petData = {
@@ -71,9 +124,8 @@ const selectedPurpose = watch("purpose"); // 👈 Watch the purpose field
         purpose: data.purpose,
         adopted: false,
         dateAdded: new Date().toLocaleDateString('en-US'),
-        ...(data.purpose === 'sell' && { price: parseFloat(data.price) }) // 👈 add price if selling
+        ...(data.purpose === 'sell' && { price: parseFloat(data.price) })
       };
-
 
       const petRes = await axiosPublic.post('/pet', petData);
 
@@ -85,6 +137,8 @@ const selectedPurpose = watch("purpose"); // 👈 Watch the purpose field
           showConfirmButton: false,
           timer: 1500
         });
+        // optionally reset form or replace vaccinations with a fresh one
+        replace([{ vaccineType: null, date: "" }]);
       } else {
         throw new Error("Pet submission failed.");
       }
@@ -162,48 +216,78 @@ const selectedPurpose = watch("purpose"); // 👈 Watch the purpose field
               {errors.purpose && <p className="text-red-500 text-xs italic">{errors.purpose.message}</p>}
             </div>
 
-            {/* Pet Price (only when purpose is For Sale) */}
+            {/* Price (only for sale) */}
             {selectedPurpose === 'sell' && (
               <div className="col-span-2">
                 <label className="block text-gray-700 font-bold mb-1">Price (USD)</label>
-                <input
-                  type="number"
-                  {...register('price', { required: 'Price is required when selling' })}
-                  className="w-full px-3 py-1.5 border rounded"
-                  placeholder="Enter price in USD"
-                />
+                <input type="number" {...register('price', { required: 'Price is required when selling' })} className="w-full px-3 py-1.5 border rounded" placeholder="Enter price in USD" />
                 {errors.price && <p className="text-red-500 text-xs italic">{errors.price.message}</p>}
               </div>
             )}
 
-
-            {/* Dynamic Vaccinations */}
+            {/* Vaccinations */}
             <div className="col-span-2">
               <label className="block text-gray-700 font-bold mb-1">Vaccinations</label>
-              {fields.map((field, index) => (
-                <div key={field.id} className="flex items-center gap-2 mb-2">
-                  <input
-                    {...register(`vaccinations.${index}.vaccineType`, { required: 'Vaccine type is required' })}
-                    placeholder="Vaccine Type"
-                    className="w-1/2 px-3 py-1.5 border rounded"
-                  />
-                  <input
-                    type="date"
-                    {...register(`vaccinations.${index}.date`, { required: 'Date is required' })}
-                    className="w-1/2 px-3 py-1.5 border rounded"
-                  />
-                  <button type="button" onClick={() => remove(index)} className="bg-red-500 text-white px-2 py-1 rounded">
-                    Remove
-                  </button>
-                </div>
-              ))}
-              <button
-                type="button"
-                onClick={() => append({ vaccineType: "", date: "" })}
-                className="bg-green-500 text-white px-3 py-1 rounded"
-              >
-                Add Vaccination
-              </button>
+              {fields.map((fieldItem, index) => {
+                const isFirstRow = index === 0;
+                return (
+                  <div key={fieldItem.id} className="flex items-center gap-2 mb-2">
+                    {/* Vaccine Type */}
+                    <Controller
+                      name={`vaccinations.${index}.vaccineType`}
+                      control={control}
+                      rules={{ required: 'Vaccine type is required' }}
+                      render={({ field }) => (
+                        <Select
+                          {...field}
+                          options={getFilteredVaccines(index)}
+                          placeholder="Select Vaccine"
+                          onChange={(selected) => field.onChange(selected)}
+                          value={field.value}
+                          className="w-1/2"
+                        />
+                      )}
+                    />
+
+                    {/* Date */}
+                    <input
+                      type="date"
+                      {...register(`vaccinations.${index}.date`, { required: 'Date is required' })}
+                      className="w-1/4 px-3 py-1.5 border rounded"
+                    />
+
+                    {/* Buttons */}
+                    {isFirstRow ? (
+                      <>
+                        <button
+                          type="button"
+                          onClick={() => append({ vaccineType: null, date: "" })}
+                          className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded"
+                        >
+                          +
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => replace([{ vaccineType: null, date: "" }])}
+                          className="bg-amber-500 hover:bg-amber-600 text-white px-3 py-1 rounded"
+                        >
+                          Reset
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => remove(index)}
+                        className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded"
+                      >
+                        -
+                      </button>
+                    )
+                    }
+                  </div>
+                );
+              })}
             </div>
 
             {/* Pet Location */}
@@ -229,9 +313,7 @@ const selectedPurpose = watch("purpose"); // 👈 Watch the purpose field
 
           </div>
 
-          <button type="submit" className="w-full mt-4 bg-[#F07C3D] text-white font-bold py-2 px-4 rounded hover:bg-[#f3732e]">
-            Submit
-          </button>
+          <button type="submit" className="w-full mt-4 bg-[#F07C3D] text-white font-bold py-2 px-4 rounded hover:bg-[#f3732e]">Submit</button>
         </form>
       </div>
     </div>
