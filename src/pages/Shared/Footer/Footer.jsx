@@ -1,4 +1,4 @@
-import logo from "../../../assets/logo.png"
+import logo from "../../../assets/pet-market4.png"
 
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 const Footer = () => {
@@ -9,7 +9,7 @@ const Footer = () => {
                     <div className="flex flex-col items-center text-center">
                         <a href="#">
                             <img
-                                className="w-36 h-10"
+                                className="w-36 h-14"
                                 src={logo}
                                 alt=""
                             />
@@ -25,36 +25,22 @@ const Footer = () => {
                             </a>
 
                             <a
-                                href="#"
+                                href="/pet-listing"
                                 className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-[#F07C3D]"
-                                aria-label="About"
+                                aria-label="Pet Listing"
                             >
-                                About
+                                Pet Listing
                             </a>
 
                             <a
-                                href="#"
+                                href="/donation-campaign"
                                 className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-[#F07C3D]"
-                                aria-label="Teams"
+                                aria-label="Donation Campaigns"
                             >
-                                Teams
+                                Donation Campaigns
                             </a>
 
-                            <a
-                                href="#"
-                                className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-[#F07C3D]"
-                                aria-label="Privacy"
-                            >
-                                Privacy
-                            </a>
-
-                            <a
-                                href="#"
-                                className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-[#F07C3D]"
-                                aria-label="Cookies"
-                            >
-                                Cookies
-                            </a>
+                           
                         </div>
                     </div>
 
