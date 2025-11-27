@@ -9,7 +9,7 @@ const SendEmailForm = () => {
 
   const [status, setStatus] = useState('');
 
-  const BASE_URL = "http://localhost:5000/";
+  const BASE_URL = "https://paw-palace-server-2.vercel.app/";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
