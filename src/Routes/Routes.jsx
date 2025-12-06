@@ -45,7 +45,7 @@ const router = createBrowserRouter([
         {
           path: "/petDetails/:id",
           element: <PetDetails></PetDetails>,
-          loader: ({ params }) => fetch(`https://paw-palace-server-2.vercel.app//pet/${params.id}`)
+          loader: ({ params }) => fetch(`https://paw-palace-server-2.vercel.app/pet/${params.id}`)
         },
         {
           path: "/donation-campaign",
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
         {
           path: "/donationDetails/:id",
           element: <DonationDetails></DonationDetails>,
-          loader: ({ params }) => fetch(`https://paw-palace-server-2.vercel.app//donation-camp/${params.id}`)
+          loader: ({ params }) => fetch(`https://paw-palace-server-2.vercel.app/donation-camp/${params.id}`)
         },
        {
         path:"/send-email",
