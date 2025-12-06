@@ -80,7 +80,7 @@ const router = createBrowserRouter([
       {
         path: 'updatePet/:id',
         element:<UpdatePet></UpdatePet>,
-        loader: ({ params }) => fetch(`https://paw-palace-server-2.vercel.app//pet/${params.id}`)
+        loader: ({ params }) => fetch(`https://paw-palace-server-2.vercel.app/pet/${params.id}`)
       },
       
       {
@@ -98,7 +98,7 @@ const router = createBrowserRouter([
       {
         path: 'updateCampaign/:id',
         element: <UpdateCampaign></UpdateCampaign>,
-        loader: ({ params }) => fetch(`https://paw-palace-server-2.vercel.app//donation-camp/${params.id}`)
+        loader: ({ params }) => fetch(`https://paw-palace-server-2.vercel.app/donation-camp/${params.id}`)
       },
 
       //Admin routes
