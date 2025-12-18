@@ -1,7 +1,9 @@
 # PetMarket
 
 ## Concept
-PetMarket is a platform where users are **admin** and **normal users**. Users can add pets with **admin approval**. Pets can be **donated**, **sold**, and users can open **donation campaigns** for their own pets. The system can **send reminders** to adopters or buyers before the **vaccination date** of the pets.
+PetMarket is a platform with two types of users: **admins** and **regular users**. Users can add pets, which require **admin approval** before being listed. Pets can be **donated** or **sold**, and users can open **donation campaigns** for their own pets. The system can **send reminders** to adopters or buyers before a pet's **vaccination date** .
+
+
 
 ---
 
@@ -66,5 +68,5 @@ Password: 1234aA
 ---
 
 ## Contact
-For queries or feedback, contact: **sani@gmail.com**
+For queries or feedback, contact: **shossen1999@gmail.com**
 
